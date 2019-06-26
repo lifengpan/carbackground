@@ -1,6 +1,7 @@
 const admin_oprationUser = require('../updata/manage/operationUser')
 const admin_opration_menu = require('../updata/manage/operationMenu')
 const admin_opration_order = require('../updata/manage/operationOrder')
+const admin_opration_car = require('../updata/manage/operationCar')
 
 const userList = async (req, res) => {
   const data = await admin_oprationUser.getUserList()
@@ -94,6 +95,56 @@ const deleteOrder = async (req, res) => {
   res.send(JSON.stringify(data))
 }
 
+const refundSales = async (req, res) => {
+  var post = ''
+  req.on('data', async function(chunk) {
+    post += chunk
+    post = JSON.parse(post)
+    const data = await admin_opration_order.refundSales(req, post)
+    res.set("content-type","application/json;charset = utf-8");
+    res.send(JSON.stringify(data))
+  })
+}
+
+const allCar = async (req, res) => {
+  const data = await admin_opration_menu.allCar()
+  res.set("content-type","application/json;charset = utf-8");
+  res.send(JSON.stringify(data))
+}
+
+const getCarDetails = async (req, res) => {
+  const data = await admin_opration_car.getCarDetails(req)
+  res.set("content-type", "application/json;charset = utf-8")
+  res.send(JSON.stringify(data))
+}
+const editCarInfo = async (req, res) => {
+  var post = ''
+  req.on('data', async function(chunk) {
+    post += chunk
+    post = JSON.parse(post)
+    const data = await admin_opration_car.editCarInfo(req, post)
+    res.set("content-type","application/json;charset = utf-8");
+    res.send(JSON.stringify(data))
+  })
+}
+
+const deleteCar = async (req, res) => {
+  const data = await admin_opration_car.deleteCar(req)
+  res.set("content-type", "application/json;charset = utf-8")
+  res.send(JSON.stringify(data))
+}
+
+const addCar = async (req, res) => {
+  var post = ''
+  req.on('data', async function(chunk) {
+    post += chunk
+    post = JSON.parse(post)
+    const data = await admin_opration_car.addCar(req, post)
+    res.set("content-type","application/json;charset = utf-8");
+    res.send(JSON.stringify(data))
+  })
+}
+
 module.exports = {
   userList,
   userDetails,
@@ -106,5 +157,11 @@ module.exports = {
   allOrderList,
   getOrderDetails,
   editOrderInfo,
-  deleteOrder
+  deleteOrder,
+  refundSales,
+  allCar,
+  getCarDetails,
+  editCarInfo,
+  deleteCar,
+  addCar
 }

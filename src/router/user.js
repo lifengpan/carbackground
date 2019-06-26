@@ -12,6 +12,13 @@ router.use(setresponseHeader);
 router.get("/menuList", user.menuList)
 router.post("/createOrder", user.createOrder)
 router.put("/createOrder/:id/addDish", user.orderAddDish)
-router.get("/orderList/:username", user.uniqueOrderList)
+router.get("/orderList/:userId", user.uniqueOrderList)
+router.put("/orderList/confirmGoods/:orderId", user.confirmGoods)
+router.put("/orderList/refund/:orderId", user.userRefund)
+
+router.put("/editUserInfo/:id", user.eidtInfo)
+router.get("/personalInfo/:id", user.getPersonalInfo)
+
+router.get("/:id/carDetails", user.getCarDetails)
 
 module.exports = router;

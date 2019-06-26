@@ -13,8 +13,10 @@ let data, success, message, prompt
 const getUserList = async function () {
   try {
     await lfpmysql.connectmysql()
-    const sql = 'select * from user'
+    const sql = 'select * from carUser'
+    console.log(sql)
     data = await lfpmysql.queryData(sql)
+    console.log(data)
     success = true
     message = '获取用户列表成功'
     await lfpmysql.END()
@@ -47,7 +49,8 @@ const getUserDetails = async function (req) {
 const editUserInfo = async function (req, post) {
   try {
     await lfpmysql.connectmysql()
-    const sql = `update user set password = '${post.password}', isManage = '${post.isManage}'  where username = '${req.params.username}'`
+    const sql = `update carUser set password = '${post.password}', isManage = '${post.isManage}'  where userId = '${req.params.userId}'`
+    console.log(sql)
     await lfpmysql.queryData(sql)
     success = true
     message = '修改信息成功'
@@ -63,7 +66,7 @@ const editUserInfo = async function (req, post) {
 const deleteUser = async function (req) {
   try {
     await lfpmysql.connectmysql()
-    const sql = `delete from user where username = '${req.params.username}'`
+    const sql = `delete from carUser where userId = '${req.params.userId}'`
     await lfpmysql.queryData(sql)
     success = true
     message = '删除用户成功'

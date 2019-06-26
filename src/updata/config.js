@@ -2,7 +2,7 @@ let config = {
   host: 'localhost',
   user: 'root',
   password: 'fxllfp503824',
-  database: 'lfprestaurant',
+  database: 'CurriculumDesign',
   multipleStatements: true
 }
 
