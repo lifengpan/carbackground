@@ -52,7 +52,7 @@ const userRefund = async (req, res) => {
   req.on('data', async function(chunk) {
     post += chunk
     post = JSON.parse(post)
-    const data = await user_info.userRefund(req, post)
+    const data = await user_order.userRefund(req, post)
     res.set("content-type","application/json;charset = utf-8");
     res.send(JSON.stringify(data))
   })

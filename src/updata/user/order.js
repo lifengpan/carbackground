@@ -51,12 +51,15 @@ const orderAddDish = async function (req, post, orderId) {
     let sql = ''
     let sqlsum = ''
     let arr = post.dishList
+    console.log(arr)
+    console.log('------------')
+    console.log(post.dishList)
     let totalPrice = 0
     for (let i=0; i < arr.length; i++ ) {
       sql = `select price from Commodity where commodityId = ${arr[i].id}`
       let dishDetails = await lfpmysql.queryData(sql)
       totalPrice  = totalPrice + dishDetails[0].price
-      sqlsum = sqlsum + `insert into orderAndcommodityId (orderId, commodityId, unitPrice, number) values (${orderId}, ${arr[i].number}, ${dishDetails[0].price}, ${arr[i].number});`
+      sqlsum = sqlsum + `insert into orderAndcommodityId (orderId, commodityId, unitPrice, number) values (${orderId}, ${arr[i].id}, ${dishDetails[0].price}, ${arr[i].number});`
     }
     sqlsum = sqlsum + `update Carorder set totalPrice = '${totalPrice}' where orderId = ${orderId}`
     await lfpmysql.queryData(sqlsum)
