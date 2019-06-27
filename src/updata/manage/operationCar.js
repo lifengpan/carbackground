@@ -35,7 +35,7 @@ const getCarDetails = async function (req) {
 const editCarInfo = async function (req, post) {
   try {
     await lfpmysql.connectmysql()
-    const sql = `update Car set carBrand = '${post.carBrand}', carName = '${post.carName}', energy = '${post.energy}' where carId = '${req.params.id}'`
+    const sql = `update Car set carBrand = '${post.carBrand}', carName = '${post.carName}', energy = '${post.energy}', displacement = '${post.displacement}' where carId = '${req.params.id}'`
     console.log(sql)
     await lfpmysql.queryData(sql)
     success = true
