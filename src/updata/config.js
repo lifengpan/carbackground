@@ -1,7 +1,7 @@
 let config = {
   host: 'localhost',
   user: 'root',
-  password: 'fxllfp503824',
+  password: '',
   database: 'CurriculumDesign',
   multipleStatements: true
 }
